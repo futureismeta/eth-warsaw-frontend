@@ -17,14 +17,14 @@
     "format:check": "prettier --check \"src/**/*.{js,ts,tsx,jsx,json,css,scss,md}\""
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
     "@mml-io/3d-web-client-core": "^0.17.0",
     "@mml-io/3d-web-experience-client": "^0.17.0",
     "@mml-io/3d-web-user-networking": "^0.17.0",
     "@mui/base": "^5.0.0-beta.40",
-    "@mui/icons-material": "^5.15.20",
-    "@mui/material": "^5.15.20",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
     "@mui/styles": "^5.15.20",
     "@react-buddy/ide-toolbox": "^2.4.0",
     "@react-buddy/palette-mui": "^5.0.1",
