@@ -1,0 +1,30 @@
+.connection {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start of the container */
+  width: 100px; /* Adjust width as needed */
+  height: 100px; /* Adjust width as needed */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 255, 255, 1); /* Adjust opacity as needed */
+  z-index: 102;
+  border-radius: 100%;
+}
+
+.connectButton {
+  background-color: #00cfff; /* Dark purple background */
+  color: #001c41; /* Light pink text color */
+  border: none; /* No border */
+  border-radius: 100%; /* Rounded corners */
+  padding: 21px; /* Padding for the button */
+  font-size: 16px; /* Font size */
+  font-family: Arial, sans-serif; /* Font family */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  height: 100px;
+}
+
+.connectButton:hover {
+  background-color: #0088ed; /* Slightly lighter purple on hover */
+}
