@@ -3,7 +3,7 @@ import {useAccount} from 'wagmi';
 import {connect} from '@wagmi/core';
 import cryptoConfig from '../../configuration/config';
 import {injected} from '@wagmi/connectors';
-import {AlephZero} from "../../images";
+import {AlephZeroLogo} from "../../images";
 import {Avatar, Box, Button} from '@mui/material';
 import {AccountBalanceWallet as WalletIcon} from '@mui/icons-material';
 
@@ -42,7 +42,7 @@ export const Connection = () => {
     const renderConnected = () => (
         <Box sx={{ position: 'absolute', top: 16, left: 16, pointerEvents: 'auto', display: 'flex', alignItems: 'center' }}>
             <Avatar sx={{ width: 40, height: 40, marginRight: 1 }}>
-                <AlephZero style={{ width: '100%', height: '100%' }} />
+                <AlephZeroLogo style={{ width: '100%', height: '100%' }} />
             </Avatar>
             <span style={{ color: 'white' }}>Connected</span>
         </Box>
