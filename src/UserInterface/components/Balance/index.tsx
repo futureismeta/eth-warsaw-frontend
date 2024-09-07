@@ -2,8 +2,11 @@ import React from 'react';
 import {Box, CardContent, List, ListItem, ListItemText, Typography} from '@mui/material';
 import {MonetizationOn as CoinsIcon} from '@mui/icons-material';
 import {TransparentCard} from "../General/TransparentCard";
+import {useAlephZero} from "../../core/hooks/Crypto/useAlephZero";
 
 export const Balance = () => {
+
+    const {alephZeroBalance} = useAlephZero()
 
     return (
         <Box sx={{position: 'absolute', bottom: 16, right: 16, pointerEvents: 'auto'}}>
@@ -14,16 +17,10 @@ export const Balance = () => {
                     </Typography>
                     <List dense>
                         <ListItem>
-                            <ListItemText primary="BTC" secondary="0.0025"
-                                          secondaryTypographyProps={{component: 'span'}}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="ETH" secondary="0.15"
-                                          secondaryTypographyProps={{component: 'span'}}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemText primary="DOGE" secondary="1000"
-                                          secondaryTypographyProps={{component: 'span'}}/>
+                            <ListItemText
+                                primary={`ZERO: ${alephZeroBalance.formatted.toString()}`}
+                                primaryTypographyProps={{component: 'span'}}
+                                />
                         </ListItem>
                     </List>
                 </CardContent>

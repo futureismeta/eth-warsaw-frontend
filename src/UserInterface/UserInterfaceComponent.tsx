@@ -25,5 +25,3 @@ export const UserInterfaceComponent = () => {
         </div>
     );
 };
-
-export default UserInterfaceComponent;
