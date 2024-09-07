@@ -36,7 +36,7 @@ export const app = new Networked3dWebExperienceClient(holder, {
   uiNetworkAddress: `${protocol}//${host}/ui-networking`,
   environmentConfiguration: {
     sun: {
-      intensity: 1,
+      intensity: 3,
       polarAngle: 0.25,
       azimuthalAngle: 180,
 

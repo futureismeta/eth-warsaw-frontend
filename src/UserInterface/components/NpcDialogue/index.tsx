@@ -1,28 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import {Avatar, Box, Button, CardContent, Typography} from '@mui/material';
-import {ChevronRight as ChevronRightIcon, Person as UserIcon} from '@mui/icons-material';
-import {TransparentCard} from "../General/TransparentCard";
+import React, { useEffect, useState } from 'react';
+import { Avatar, Box, Button, CardContent, Typography } from '@mui/material';
+import { ChevronRight as ChevronRightIcon, Person as UserIcon } from '@mui/icons-material';
+import { TransparentCard } from "../General/TransparentCard";
+import { useNpcDialogue } from '../../core/hooks/NpcDialogue/useNpcDialogue';
 
 export const NpcDialogue = () => {
-
-    const [showMessage, setShowMessage] = useState(true);
+    const npcMessages = useNpcDialogue(); // Fetch the dialogue from the hook
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-
-    const [npcMessages, setNpcMessages] = useState([
-        "Welcome, adventurer! The dragon has been spotted near the eastern mountains.",
-        "Beware of the enchanted forest to the north. Many have entered, few have returned.",
-        "I've heard rumors of hidden treasure in the abandoned mines. Be careful if you decide to explore!",
-        "The local blacksmith is offering a discount on weapon upgrades today. Might be worth a visit!",
-        "There's a mysterious portal that appeared in the town square. Nobody knows where it leads..."
-    ]);
+    const [showMessage, setShowMessage] = useState(true);
+    const [isChatFinished, setIsChatFinished] = useState(false);
 
     const handleNextMessage = () => {
-        setCurrentMessageIndex((prevIndex) => (prevIndex + 1) % npcMessages.length);
+        if (currentMessageIndex < npcMessages.length - 1) {
+            setCurrentMessageIndex(prevIndex => prevIndex + 1);
+        } else {
+            setIsChatFinished(true); // Mark chat as finished when reaching the end
+        }
     };
 
     useEffect(() => {
         setShowMessage(true);
     }, [currentMessageIndex]);
+
+    if (isChatFinished) {
+        return null; // End the chat by not rendering the component when the chat is finished
+    }
 
     return (
         <Box
@@ -40,27 +42,29 @@ export const NpcDialogue = () => {
         >
             <TransparentCard>
                 <CardContent>
-                    <Box sx={{display: 'flex', alignItems: 'flex-start', gap: 2}}>
-                        <Avatar sx={{bgcolor: 'primary.main'}}>
-                            <UserIcon/>
+                    <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+                        <Avatar sx={{ bgcolor: 'primary.main' }}>
+                            <UserIcon />
                         </Avatar>
-                        <Box sx={{flexGrow: 1}}>
-                            <Typography variant="subtitle1" sx={{fontWeight: 'bold', mb: 1}}>NPC</Typography>
-                            <Typography variant="body2" sx={{mb: 2}}>{npcMessages[currentMessageIndex]}</Typography>
-                            <Box sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 1 }}>NPC</Typography>
+                            <Typography variant="body2" sx={{ mb: 2 }}>{npcMessages[currentMessageIndex]}</Typography>
+                            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                 <Button
                                     variant="outlined"
                                     size="small"
-                                    endIcon={<ChevronRightIcon/>}
+                                    endIcon={<ChevronRightIcon />}
                                     onClick={handleNextMessage}
-                                    sx={{color: 'white', borderColor: 'rgba(255, 255, 255, 0.2)'}}
+                                    sx={{ color: 'white', borderColor: 'rgba(255, 255, 255, 0.2)' }}
+                                    disabled={isChatFinished} // Disable button when chat is finished
                                 >
-                                    Next
+                                    {currentMessageIndex < npcMessages.length - 1 ? 'Next' : 'Close'}
                                 </Button>
                             </Box>
                         </Box>
                     </Box>
                 </CardContent>
             </TransparentCard>
-        </Box>)
-}
+        </Box>
+    );
+};

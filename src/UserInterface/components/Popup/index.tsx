@@ -1,46 +1,36 @@
 import React from 'react';
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { usePopup } from '../../core/hooks/usePopup';
+import { Box, IconButton, Typography } from '@mui/material';
+import { styled } from "@mui/system";
+import { Close as CloseIcon } from '@mui/icons-material';
+import {PopupCard} from "../General/PopupCard";
 
-const GlobalPopup = () => {
-  const { isOpen, closePopup, content, title } = usePopup();
-  const handleClose = () => {
-    closePopup();
-  };
+const CloseButton = styled(IconButton)(({ theme }) => ({
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    color: theme.palette.grey[500], // Grey close button color
+}));
 
-  return (
-    <Dialog open={isOpen} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>
-        {title}
-        <IconButton
-          aria-label="close"
-          onClick={handleClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent dividers>{content}</DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose}>
-          Close
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
+interface GenericPopupProps {
+    title: string;
+    onClose: () => void;
+    children: React.ReactNode; // Content to display in the popup
+}
+
+const GenericPopup: React.FC<GenericPopupProps> = ({ title, onClose, children }) => {
+    return (
+        <PopupCard>
+            <CloseButton onClick={onClose} aria-label="close">
+                <CloseIcon />
+            </CloseButton>
+            <Typography variant="h4" component="h1" gutterBottom>
+                {title}
+            </Typography>
+            <Box>
+                {children} {/* Dynamic content to be passed */}
+            </Box>
+        </PopupCard>
+    );
 };
 
-export default GlobalPopup;
+export default GenericPopup;

@@ -3,7 +3,7 @@ import {flushSync} from 'react-dom';
 import {createRoot, Root} from 'react-dom/client';
 import {UserInterfaceComponent} from './UserInterfaceComponent';
 import {WagmiProvider} from 'wagmi';
-import cryptoConfig from './configuration/config';
+import cryptoConfig from './config/config';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {PopupProvider} from './core/providers/PopupProvider';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
@@ -32,14 +32,14 @@ export class UserInterface {
         flushSync(() =>
             this.root.render(
                 <ThemeProvider theme={theme}>
-                    <CssBaseline/>
-                    <PopupProvider>
-                        <WagmiProvider config={cryptoConfig}>
+                    <WagmiProvider config={cryptoConfig}>
+                        <CssBaseline/>
+                        <PopupProvider>
                             <QueryClientProvider client={queryClient}>
                                 <UserInterfaceReference ref={this.appRef}/>
                             </QueryClientProvider>
-                        </WagmiProvider>
-                    </PopupProvider>
+                        </PopupProvider>
+                    </WagmiProvider>
                 </ThemeProvider>
             )
         );

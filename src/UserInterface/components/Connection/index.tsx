@@ -1,56 +1,48 @@
-import React from 'react';
-import {useAccount} from 'wagmi';
-import {connect} from '@wagmi/core';
-import cryptoConfig from '../../configuration/config';
-import {injected} from '@wagmi/connectors';
-import {AlephZeroLogo} from "../../images";
-import {Avatar, Box, Button} from '@mui/material';
-import {AccountBalanceWallet as WalletIcon} from '@mui/icons-material';
+import React from 'react'
+import { Avatar, Box, Button, Typography } from '@mui/material'
+import { AccountBalanceWallet as WalletIcon } from '@mui/icons-material'
+import { useAccount } from 'wagmi'
+import { AlephZeroLogo } from '../../images' // Assuming you have this
+import { usePopup } from '../../core/hooks/usePopup'
+import { ConnectWallet } from "./ConnectWallet" // Assuming you have your PopupContext
 
 export const Connection = () => {
-    const { isConnected } = useAccount();
+    const { isConnected } = useAccount()
+    const { openPopup } = usePopup()
 
-    const handleConnect = async () => {
-        try {
-            await connect(cryptoConfig, { connector: injected() });
-        } catch (error) {
-            console.error('Failed to connect:', error);
-        }
-    };
+    const handleOpen = () => {
+        openPopup(<ConnectWallet />, isConnected ? 'Manage Wallet' : 'Connect Wallet')
+    }
 
-    const renderButton = () => (
+    return (
         <Box sx={{ position: 'absolute', top: 16, left: 16, pointerEvents: 'auto' }}>
             <Button
                 variant="outlined"
-                onClick={handleConnect}
+                onClick={handleOpen}
                 sx={{
                     color: 'white',
                     borderColor: 'rgba(255, 255, 255, 0.8)',
-                    paddingLeft: '12px', // Reduce left padding
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
                 }}
-                startIcon={
-                    <Avatar sx={{ width: 24, height: 24, bgcolor: 'primary.main' }}>
-                        <WalletIcon sx={{ fontSize: 16 }} />
-                    </Avatar>
-                }
             >
-                Connect Wallet
+                {isConnected ? (
+                    <>
+                        <Avatar sx={{ width: 24, height: 24 }}>
+                            <AlephZeroLogo style={{ width: '100%', height: '100%' }} />
+                        </Avatar>
+                        <Typography variant="body2">Connected</Typography>
+                    </>
+                ) : (
+                    <>
+                        <Avatar sx={{ width: 24, height: 24, bgcolor: 'primary.main' }}>
+                            <WalletIcon sx={{ fontSize: 16 }} />
+                        </Avatar>
+                        <Typography variant="body2">Connect Wallet</Typography>
+                    </>
+                )}
             </Button>
         </Box>
-    );
-
-    const renderConnected = () => (
-        <Box sx={{ position: 'absolute', top: 16, left: 16, pointerEvents: 'auto', display: 'flex', alignItems: 'center' }}>
-            <Avatar sx={{ width: 40, height: 40, marginRight: 1 }}>
-                <AlephZeroLogo style={{ width: '100%', height: '100%' }} />
-            </Avatar>
-            <span style={{ color: 'white' }}>Connected</span>
-        </Box>
-    );
-
-    return (
-        <div>
-            {!isConnected ? renderButton() : renderConnected()}
-        </div>
-    );
-};
+    )
+}
