@@ -1,42 +1,35 @@
-import { useState, useEffect } from 'react';
-import { useAccount } from 'wagmi';
-import { useAlephZero } from '../Crypto/useAlephZero';
-
+import { useState, useCallback } from 'react';
 
 export interface Quest {
+    id: string;
     title: string;
-    xp: number;
     isCompleted: boolean;
 }
 
+const initialQuestList: Quest[] = [
+    { id: 'box_celo', title: 'Find the Celo Box', isCompleted: false },
+    { id: 'box_aleph_zero', title: 'Find the Aleph Zero Box', isCompleted: false },
+    { id: 'box_arweave', title: 'Find the Arweave Box', isCompleted: false },
+    { id: 'box_ora', title: 'Find the Ora Box', isCompleted: false },
+    { id: 'box_worldcoin', title: 'Find the WorldCoin Box', isCompleted: false },
+    { id: 'box_ethwarsaw', title: 'Find the EthWarsaw Box', isCompleted: false },
+    { id: 'box_future_meta', title: 'Find the Future is Meta Box', isCompleted: false },
+    { id: 'box_mantle', title: 'Find the Mantle Box', isCompleted: false },
+];
+
 export const useQuests = () => {
-    const { address } = useAccount(); // Wagmi hook to check wallet connection
-    const { alephZeroBalance } = useAlephZero(); // Hook to get Aleph Zero balance
-    const [quests, setQuests] = useState([
-        { title: 'Connect your wallet', xp: 100, isCompleted: false },
-        { title: 'Hold 10 ZERO', xp: 250, isCompleted: false },
-        { title: 'Perform a swap', xp: 500, isCompleted: false },
-    ]);
+    const [quests, setQuests] = useState<Quest[]>(() => initialQuestList);
 
-    useEffect(() => {
-        // Update quest status based on conditions
-        setQuests(prevQuests => prevQuests.map(quest => {
-            if (quest.title === 'Connect your wallet') {
-                return {
-                    ...quest,
-                    isCompleted: !!address, // Completed if wallet is connected
-                };
-            }
-            if (quest.title === 'Hold 10 ZERO') {
-                return {
-                    ...quest,
-                    isCompleted: alephZeroBalance.decimals >= 10, // Completed if balance is >= 10 ZERO
-                };
-            }
-            // You can add more conditions for other quests like 'Perform a swap'
-            return quest;
-        }));
-    }, [address, alephZeroBalance]); // Re-run the check when balance or address changes
+    // Method to update a quest's completion status by ID
+    const updateQuestStatus = useCallback((questId: string, isCompleted: boolean) => {
+        setQuests((prevQuests) =>
+            prevQuests.map((quest) =>
+                quest.id === questId ? { ...quest, isCompleted } : quest
+            )
+        );
+    }, []);
 
-    return { quests };
+    console.log(quests)
+
+    return { quests, updateQuestStatus };
 };

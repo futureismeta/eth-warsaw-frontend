@@ -2475,6 +2475,11 @@ array-union@^2.1.0:
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-2.1.0.tgz#b798420adbeb1de828d84acd8a2e23d3efe85e8d"
   integrity sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==
 
+arweave-deploy@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/arweave-deploy/-/arweave-deploy-1.9.1.tgz#1cc45fc5eb2fd62985ad4e54076ffe850a6a33f7"
+  integrity sha512-yNC9joASgsqQBASLwNivzMJxUHyXuzWHg7qLIGg/+y5hDprSy3fsMUNJ83qCpATYnmJdnECcBXKESBnhalM88w==
+
 async-mutex@^0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/async-mutex/-/async-mutex-0.2.6.tgz#0d7a3deb978bc2b984d5908a2038e1ae2e54ff40"
