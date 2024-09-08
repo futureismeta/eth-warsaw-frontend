@@ -1,5 +1,8 @@
 {
   "name": "web-client",
+  "engines": {
+    "node": "v20.11.1"
+  },
   "private": true,
   "version": "0.0.1",
   "type": "module",
