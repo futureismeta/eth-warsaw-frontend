@@ -7,8 +7,8 @@ export const useNpcDialogue = () => {
         // Simulate fetching dialogue messages (can be replaced with API call)
         const fetchNpcMessages = () => {
             return [
-                "Welcome to the Eth Warsaw 2024 virtual conference.",
-                "Powered by Aleph Zero and hosted by Arweave, this event showcases the latest innovations in blockchain technology.",
+                "Welcome to the Eth Warsaw 2024 virtual conference! Explore our amazing sponsors and learn about all the innovation in the Web3 World",
+                "Explore the beautifully crafted space and engage with different blockchains as you explore. Don't forget to meet Warsaw's famous Mermaid and collect a unique prize!",
             ];
         };
 

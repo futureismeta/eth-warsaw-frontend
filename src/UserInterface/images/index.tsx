@@ -5,5 +5,5 @@ type ImageProps = {
 };
 
 export const AlephZeroLogo: React.FC<ImageProps> = ({ style }) => (
-  <img src="/assets/images/alephzero.png" style={style} alt="Metis" />
+  <img src="/assets/images/alephzero.jpg" style={style} alt="Metis" />
 );

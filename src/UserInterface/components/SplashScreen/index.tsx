@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Box, Button, Card, Fade, Typography} from '@mui/material';
-import {styled} from '@mui/system';
-import {AccountBalanceWallet as WalletIcon} from '@mui/icons-material';
-import {AlephZeroLogo} from "../../images";
+import React, { useState } from 'react';
+import { Box, Button, Card, Fade, Typography } from '@mui/material';
+import { styled } from '@mui/system';
+import { AccountBalanceWallet as WalletIcon } from '@mui/icons-material';
+import { AlephZeroLogo } from "../../images";
 
 const FullPageContainer = styled(Box)(() => ({
     height: '100vh',
@@ -73,19 +73,16 @@ export const SplashScreen: React.FC = () => {
                         />
                     </Box>
                     <Typography variant="h4" align="center" gutterBottom>
-                        Welcome to the Aleph Zero Web3 Experience
+                        Welcome to ETH Warsaw 2024 Web3D Experience!
                     </Typography>
                     <Typography variant="body1" align="center" sx={{ mb: 2 }}>
-                        Embark on an educational journey into the world of Aleph Zero, a high-performance blockchain platform
-                        with a focus on privacy and scalability.
+                        This virtual venue is designed to immerse you in this year’s conference, offering a chance to engage with cutting-edge technologies from our main sponsors. Be sure to connect your wallet and participate in the quest—you can collect your prize after verifying your identity with Worldcoin.
                     </Typography>
                     <Typography variant="body1" align="center" sx={{ mb: 2 }}>
-                        Learn about Aleph Zero's unique consensus mechanism, explore staking opportunities, and discover how
-                        to contribute to the network's security and growth.
+                        Thanks to Arweave’s decentralized data storage, this space will remain accessible for years to come, ensuring your experience is preserved.
                     </Typography>
-                    <Typography variant="body1" align="center" sx={{ mb: 3 }}>
-                        You'll need a Web3 wallet to interact with the Aleph Zero network. If you don't have one, you can
-                        create a wallet using supported providers.
+                    <Typography variant="body1" align="center" sx={{ mb: 2 }}>
+                        Explore and interact with groundbreaking technologies across various blockchains, including Celo, Aleph Zero, and Mantle. Dive in and discover the future of Web3.
                     </Typography>
                     <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
                         <SplashButton

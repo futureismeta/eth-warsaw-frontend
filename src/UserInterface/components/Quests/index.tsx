@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {Box, CardContent, IconButton, List, ListItem, ListItemText, Tooltip, Typography} from '@mui/material';
-import {Cancel, CheckCircle, EmojiEvents as TrophyIcon, ExpandLess, ExpandMore} from '@mui/icons-material';
+import React, {useCallback, useState} from 'react';
+import {Box, CardContent, IconButton, List, Typography} from '@mui/material';
+import {EmojiEvents as TrophyIcon, ExpandLess, ExpandMore} from '@mui/icons-material';
 import {TransparentCard} from "../General/TransparentCard";
 import {styled} from "@mui/system";
 import {useQuests} from '../../core/hooks/Quests/useQuests';
@@ -27,12 +27,8 @@ const QuestList = styled(List)(() => ({
 }));
 
 
-
-
-
-
 export const Quests = () => {
-    const { quests } = useQuests();
+    const {quests} = useQuests();
     const [minimized, setMinimized] = useState(false);
 
     const toggleMinimized = useCallback(() => {
@@ -42,22 +38,22 @@ export const Quests = () => {
     console.log("Quests", quests)
 
     return (
-        <Box sx={{ position: 'absolute', top: 16, right: 16, pointerEvents: 'auto' }}>
-            <TransparentCard sx={{ width: 350, overflow: 'hidden' }}>
-                <CardContent sx={{ padding: 2 }}>
+        <Box sx={{position: 'absolute', top: 16, right: 16, pointerEvents: 'auto'}}>
+            <TransparentCard sx={{width: 350, overflow: 'hidden'}}>
+                <CardContent sx={{padding: 2}}>
                     <Typography variant="h6" sx={{
                         display: 'flex',
                         alignItems: 'center',
                         mb: 2,
                         fontWeight: 'bold'
                     }}>
-                        <TrophyIcon sx={{ mr: 1 }} aria-hidden="true" /> Quests
+                        <TrophyIcon sx={{mr: 1}} aria-hidden="true"/> Quests
                         <IconButton
-                            sx={{ ml: 'auto' }}
+                            sx={{ml: 'auto'}}
                             onClick={toggleMinimized}
                             aria-label={minimized ? "Expand quests" : "Minimize quests"}
                         >
-                            {minimized ? <ExpandMore /> : <ExpandLess />}
+                            {minimized ? <ExpandMore/> : <ExpandLess/>}
                         </IconButton>
                     </Typography>
                     <Box sx={{
@@ -66,9 +62,7 @@ export const Quests = () => {
                         overflow: 'hidden',
                     }}>
                         <QuestList>
-                            {quests.map((quest) => (
-                                <Quest key={quest.id} quest={quest} />
-                            ))}
+                            <Quest quest={quests}/>
                         </QuestList>
                     </Box>
                 </CardContent>

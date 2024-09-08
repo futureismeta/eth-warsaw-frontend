@@ -42,7 +42,7 @@ const useWebSocket = () => {
 
     router.registerRoute('box_clicked', (event) => {
       // Assuming the event contains the quest ID
-      updateQuestStatus(event.box_id, true);
+      updateQuestStatus(true);
     });
 
     return () => {

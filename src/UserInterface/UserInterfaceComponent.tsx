@@ -4,7 +4,7 @@ import useWebSocket from './core/hooks/useWebSocket';
 import {Balance} from "./components/Balance";
 import {NpcDialogue} from "./components/NpcDialogue";
 import {Quests} from "./components/Quests";
-import {useQuests} from "./core/hooks/Quests/useQuests";
+import SplashScreen from "./components/SplashScreen";
 
 const MemoQuest = React.memo(() => {
     return <Quests />;
@@ -22,9 +22,8 @@ export const UserInterfaceComponent = () => {
         <div>
             <Connection/>
             <Balance/>
-            {/*<AirdropClaim/>*/}
             <NpcDialogue/>
-            {/*<SplashScreen/>*/}
+            <SplashScreen/>
             <MemoQuest/>
         </div>
     );
