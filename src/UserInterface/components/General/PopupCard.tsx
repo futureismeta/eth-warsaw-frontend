@@ -6,7 +6,7 @@ export const PopupCard = styled(Box)(({theme}) => ({
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    minWidth: 700,
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
     backdropFilter: 'blur(10px)',
     color: theme.palette.common.white,

@@ -3,8 +3,8 @@ import { UserInterface } from './UserInterface';
 import { LoadingProgressManager } from 'mml-web';
 
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-
-const host = 'localhost:8080';
+// const host = 'localhost:8080';
+const host = window.location.host;
 
 const loadingProgressManager = new LoadingProgressManager();
 
@@ -36,7 +36,7 @@ export const app = new Networked3dWebExperienceClient(holder, {
   uiNetworkAddress: `${protocol}//${host}/ui-networking`,
   environmentConfiguration: {
     sun: {
-      intensity: 3,
+      intensity: 1,
       polarAngle: 0.25,
       azimuthalAngle: 180,
 
@@ -44,7 +44,7 @@ export const app = new Networked3dWebExperienceClient(holder, {
     ambientLight: {
       intensity: 3.5,
     },
-    groundPlane: true,
+    groundPlane: false,
   },
   loadingProgressManager: loadingProgressManager,
 });

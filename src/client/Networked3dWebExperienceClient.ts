@@ -103,8 +103,8 @@ export class Networked3dWebExperienceClient {
   private loadingScreen: LoadingScreen;
 
   constructor(
-    private holderElement: HTMLElement,
-    private config: Networked3dWebExperienceClientConfig
+      private holderElement: HTMLElement,
+      private config: Networked3dWebExperienceClientConfig
   ) {
     this.element = document.createElement('div');
     this.element.style.position = 'absolute';
@@ -120,8 +120,8 @@ export class Networked3dWebExperienceClient {
 
     this.loadingProgressManager = config.loadingProgressManager;
     this.cameraManager = new CameraManager(
-      this.element,
-      this.collisionsManager
+        this.element,
+        this.collisionsManager
     );
     this.cameraManager.camera.add(this.audioListener);
 
@@ -145,10 +145,10 @@ export class Networked3dWebExperienceClient {
 
     if (this.config.enableTweakPane !== false) {
       this.tweakPane = new TweakPane(
-        this.element,
-        this.composer.renderer,
-        this.scene,
-        this.composer.effectComposer
+          this.element,
+          this.composer.renderer,
+          this.scene,
+          this.composer.effectComposer
       );
       this.cameraManager.setupTweakPane(this.tweakPane);
       this.composer.setupTweakPane(this.tweakPane);
@@ -161,9 +161,9 @@ export class Networked3dWebExperienceClient {
 
     const initialNetworkLoadRef = {};
     this.loadingProgressManager.addLoadingAsset(
-      initialNetworkLoadRef,
-      'network',
-      'network'
+        initialNetworkLoadRef,
+        'network',
+        'network'
     );
     this.networkClient = new UserNetworkingClient({
       url: this.config.userNetworkAddress,
@@ -171,8 +171,8 @@ export class Networked3dWebExperienceClient {
       websocketFactory: (url: string) => new WebSocket(url),
       statusUpdateCallback: (status: WebsocketStatus) => {
         if (
-          status === WebsocketStatus.Disconnected ||
-          status === WebsocketStatus.Reconnecting
+            status === WebsocketStatus.Disconnected ||
+            status === WebsocketStatus.Reconnecting
         ) {
           // The connection was lost after being established - the connection may be re-established with a different client ID
           this.characterManager.clear();
@@ -188,13 +188,13 @@ export class Networked3dWebExperienceClient {
           this.spawnCharacter();
         } else {
           this.loadingProgressManager.completedLoadingAsset(
-            initialNetworkLoadRef
+              initialNetworkLoadRef
           );
         }
       },
       clientUpdate: (
-        remoteClientId: number,
-        userNetworkingClientUpdate: null | UserNetworkingClientUpdate
+          remoteClientId: number,
+          userNetworkingClientUpdate: null | UserNetworkingClientUpdate
       ) => {
         if (userNetworkingClientUpdate === null) {
           this.remoteUserStates.delete(remoteClientId);
@@ -203,9 +203,9 @@ export class Networked3dWebExperienceClient {
         }
       },
       clientProfileUpdated: (
-        clientId: number,
-        username: string,
-        characterDescription: CharacterDescription
+          clientId: number,
+          username: string,
+          characterDescription: CharacterDescription
       ): void => {
         this.updateUserProfile(clientId, {
           username,
@@ -290,7 +290,7 @@ export class Networked3dWebExperienceClient {
 
   private updateUserProfile(id: number, userData: UserData) {
     console.log(
-      `Update user_profile for id=${id} (username=${userData.username})`
+        `Update user_profile for id=${id} (username=${userData.username})`
     );
 
     this.userProfiles.set(id, userData);
@@ -303,22 +303,22 @@ export class Networked3dWebExperienceClient {
     this.characterManager.update();
     this.cameraManager.update();
     this.composer.sun?.updateCharacterPosition(
-      this.characterManager.localCharacter?.position
+        this.characterManager.localCharacter?.position
     );
     this.composer.render(this.timeManager);
     if (this.tweakPane?.guiVisible) {
       this.tweakPane.updateStats(this.timeManager);
       this.tweakPane.updateCameraData(this.cameraManager);
       if (
-        this.characterManager.localCharacter &&
-        this.characterManager.localController
+          this.characterManager.localCharacter &&
+          this.characterManager.localController
       ) {
         if (!this.characterControllerPaneSet) {
           this.characterControllerPaneSet = true;
           this.characterManager.setupTweakPane(this.tweakPane);
         } else {
           this.tweakPane.updateCharacterData(
-            this.characterManager.localController
+              this.characterManager.localController
           );
         }
       }
@@ -333,16 +333,16 @@ export class Networked3dWebExperienceClient {
       throw new Error('Client ID not set');
     }
     const spawnPosition = getSpawnPositionInsideCircle(
-      3,
-      30,
-      this.clientId!,
-      0.4
+        3,
+        30,
+        this.clientId!,
+        0.4
     );
     const spawnRotation = new Euler(0, 0, 0);
     let cameraPosition: Vector3 | null = null;
     if (window.location.hash && window.location.hash.length > 1) {
       const urlParams = decodeCharacterAndCamera(
-        window.location.hash.substring(1)
+          window.location.hash.substring(1)
       );
       spawnPosition.copy(urlParams.character.position);
       spawnRotation.setFromQuaternion(urlParams.character.quaternion);
@@ -354,18 +354,18 @@ export class Networked3dWebExperienceClient {
     }
 
     this.characterManager.spawnLocalCharacter(
-      this.clientId!,
-      ownIdentity.username,
-      ownIdentity.characterDescription,
-      spawnPosition,
-      spawnRotation
+        this.clientId!,
+        ownIdentity.username,
+        ownIdentity.characterDescription,
+        spawnPosition,
+        spawnRotation
     );
     if (cameraPosition !== null) {
       this.cameraManager.camera.position.copy(cameraPosition);
       this.cameraManager.setTarget(
-        new Vector3()
-          .add(spawnPosition)
-          .add(this.characterManager.headTargetOffset)
+          new Vector3()
+              .add(spawnPosition)
+              .add(this.characterManager.headTargetOffset)
       );
       this.cameraManager.reverseUpdateFromPositions();
     }
@@ -417,11 +417,11 @@ export class Networked3dWebExperienceClient {
     }
 
     const mmlProgressManager =
-      this.mmlCompositionScene.mmlScene.getLoadingProgressManager!()!;
+        this.mmlCompositionScene.mmlScene.getLoadingProgressManager!()!;
     this.loadingProgressManager.addLoadingDocument(
-      mmlProgressManager,
-      'mml',
-      mmlProgressManager
+        mmlProgressManager,
+        'mml',
+        mmlProgressManager
     );
     mmlProgressManager.addProgressCallback(() => {
       this.loadingProgressManager.updateDocumentProgress(mmlProgressManager);
