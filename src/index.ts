@@ -6,6 +6,8 @@ const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 // const host = 'localhost:8080';
 const host = window.location.host;
 
+const assetDirectory = `${window.location.protocol}//${host}`;
+
 const loadingProgressManager = new LoadingProgressManager();
 
 const userNetworkAddress = `${protocol}//${host}/network`;
@@ -24,11 +26,11 @@ export const app = new Networked3dWebExperienceClient(holder, {
   sessionToken: (window as any).SESSION_TOKEN,
   userNetworkAddress,
   animationConfig: {
-    airAnimationFileUrl:`${protocol}//${host}/assets/avatar/anim_air.glb`,
-    idleAnimationFileUrl: `${protocol}//${host}/assets/avatar/anim_idle.glb`,
-    jogAnimationFileUrl: `${protocol}//${host}/assets/avatar/anim_jog.glb`,
-    sprintAnimationFileUrl: `${protocol}//${host}/assets/avatar/anim_run.glb`,
-    doubleJumpAnimationFileUrl: `${protocol}//${host}/assets/avatar/anim_double_jump.glb`,
+    airAnimationFileUrl:`${assetDirectory}/assets/avatar/anim_air.glb`,
+    idleAnimationFileUrl: `${assetDirectory}/assets/avatar/anim_idle.glb`,
+    jogAnimationFileUrl: `${assetDirectory}/assets/avatar/anim_jog.glb`,
+    sprintAnimationFileUrl: `${assetDirectory}/assets/avatar/anim_run.glb`,
+    doubleJumpAnimationFileUrl: `${assetDirectory}/assets/avatar/anim_double_jump.glb`,
   },
   skyboxHdrJpgUrl: '/assets/hdr/autumn_field_puresky.jpg',
   mmlDocuments: [{ url: `${protocol}//${host}/mml-document` }],
