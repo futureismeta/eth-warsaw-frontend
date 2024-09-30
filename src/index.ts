@@ -6,7 +6,7 @@ import {LoadingProgressManager} from 'mml-web';
 const websocketProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const protocol = window.location.protocol;
 
-const host = window.location.;
+const host = window.location.host;
 
 const loadingProgressManager = new LoadingProgressManager();
 

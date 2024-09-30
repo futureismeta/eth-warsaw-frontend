@@ -57,7 +57,7 @@ export const UserInterfaceComponent = () => {
             {/*        }*/}
             {/*    ]}*/}
             {/*/>*/}
-            {/*<SplashScreen/>*/}
+            <SplashScreen/>
             <MemoQuest/>
         </div>
     );
