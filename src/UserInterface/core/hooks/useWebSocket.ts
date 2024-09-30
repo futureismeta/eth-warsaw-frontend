@@ -11,7 +11,7 @@ const useWebSocket = () => {
   useEffect(() => {
     if (!wsRef.current) {
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const host = 'localhost:8080';
+      const host = window.location.host;
       const wsUrl = `${protocol}//${host}/messages`;
       const wsClient = new WebSocket(wsUrl);
       wsRef.current = wsClient;

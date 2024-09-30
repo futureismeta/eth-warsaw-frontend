@@ -19,7 +19,7 @@ export const UserInterfaceComponent = () => {
     }
 
     return (
-        <div>
+        <div style={{zIndex: 9999}}>
             <Connection/>
             <Balance/>
             <NpcDialogue/>
@@ -57,7 +57,7 @@ export const UserInterfaceComponent = () => {
             {/*        }*/}
             {/*    ]}*/}
             {/*/>*/}
-            <SplashScreen/>
+            {/*<SplashScreen/>*/}
             <MemoQuest/>
         </div>
     );
